@@ -1,0 +1,61 @@
+<!doctype html>
+<html xmlns:th="https://www.thymeleaf.org/">
+    <head>
+		<meta charset="UTF-8" />
+        <title>Logowanie</title>
+		<link rel="stylesheet" type="text/css" href="/css/style.css">
+    </head>
+    <body>
+		<header>
+			<div id="logged">
+			</div>
+			<h1><a href='index.php'>KINO SAMOCHODOWE</a></h1>
+			<nav>
+				<a href='index.php'>REPERTUAR</a>
+				<a href='seanse.php'>SEANSE</a>
+				<a href='miejsca.php'>MIEJSCA</a>
+				<a href>O NAS</a>
+				<a href>KONTAKT</a>
+			</nav>
+        </header>
+		<section>
+			<div id = "content">
+				<div id="plakat">
+
+				</div>
+				<div id="description">
+					<h2 class="tytul"><?php echo $row['tytul'] ?></h2>
+					<div id="informacje">
+						<div class="linia" th:text="${film.gatunek}"><b>Gatunek:</b> <?php echo $row['gatunek'] ?><hr></div>
+						<div class="linia" th:text="${film.kraj}"><b>Kraj:</b> <?php echo $row['kraj'] ?><hr></div>
+						<div class="linia" th:text="${film.rok_produkcji}"><b>Rok produkcji:</b> <?php echo $row['rok_produkcji'] ?><hr></div>
+						<div class="linia" th:text="${film.rezyseria}"><b>Reżyseria:</b> <?php echo $row['rezyseria'] ?><hr></div>
+						<div class="linia" th:text="${film.scenariusz}"><b>Scenariusz:</b> <?php echo $row['scenariusz'] ?><hr></div>
+						<div class="linia" th:text="${film.obsada}"><b>Obsada:</b> <?php echo $row['obsada'] ?><hr></div>
+					</div>
+					<div id="opis" th:text="${film.opis}">
+						<b>Opis</b>:<br>
+						<hr></div>
+				</div>
+				<div style="clear:both"></div>
+			</div>
+        </section>
+		<footer>
+			<ul>
+				<li><a href>Kino Samochodowe</a></li>
+				<li><a href>Newsletter</a></li>
+				<li><a href>Kontakt</a></li>
+			</ul>
+			<ul>
+				<li><a href>Regulacje</a></li>
+				<li><a href>Polityka prywatności</a></li>
+				<li><a href>Polityka cookies</a></li>
+			</ul>
+			<ul>
+				<li><a href>Facebook</a></li>
+				<li><a href>Instagram</a></li>
+				<li><a href>Twitter</a></li>
+			</ul><br>
+        </footer>
+    </body>
+</html>

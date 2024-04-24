@@ -1,0 +1,113 @@
+<!doctype html>
+<html>
+    <head>
+		<meta charset="UTF-8" />
+        <title>Kino Samochodowe</title>
+		<link rel="stylesheet" href="../static/css/style.css">
+		<script src="jquery-3.6.4.min.js"></script>
+		<script>
+			$(document).ready(function(){			
+				$("#przycisk_formularz").click(function(e) {
+					$(".information").hide();
+					$(".information").hide();
+					e.preventDefault();
+					var email = $("#e-mail").val();
+					var login = $("#login").val();
+					var haslo = $("#haslo").val();
+					var powt_haslo = $("#powt_haslo").val();
+					var imie = $("#imie").val();
+					var nazwisko = $("#nazwisko").val();
+					var wiek = $("#wiek").val();
+					var telefon = $("#telefon").val();
+					var regulamin = $("#regulamin").val();
+					$.ajax({
+						url: 'rejestracja_ajax.php',
+						method: 'POST',
+						data:{
+							email: email,
+							login: login,
+							haslo: haslo,
+							powt_haslo: powt_haslo,
+							imie: imie,
+							nazwisko: nazwisko,
+							wiek: wiek,
+							telefon: telefon,
+							regulamin: regulamin
+						},
+						dataType: 'text',
+						success: function (response){
+							if (response == 'SUCCESS'){
+								window.location = "index.php";	
+							}else if(response === 'ERROR'){
+								setTimeout(function(){
+									$(".error").html(response);	
+									$(".error").show();}, 50);
+							}else{
+								setTimeout(function(){	
+									console.log(response)
+									$(".information").html(response);	
+									$(".information").show();}, 50);
+							}
+						}
+					})
+				})
+			});
+		</script>
+    </head>
+    <body>
+		<header>
+			<div id="logged">
+			</div>
+			<h1><a href='index.php'>KINO SAMOCHODOWE</a></h1>
+			<nav>
+				<a href='index.php'>REPERTUAR</a>
+				<a href='seanse.php'>SEANSE</a>
+				<a href='miejsca.php'>MIEJSCA</a>
+				<a href>O NAS</a>
+				<a href>KONTAKT</a>			
+			</nav>
+        </header>
+		<section>	
+			<h1>Zarejestruj się</h1>
+			<div class="formularz">
+				<form method="post">
+					<table align="center">
+						<tr>
+							<td><label>Adres e-mail<sup>*</sup>:<br><input type="text" id="e-mail" name="e-mail"></label></td>
+							<td><label>Login<sup>*</sup>:<br><input type="text" id="login" name="login"></label></td>
+						</tr><tr>
+							<td><label>Imię<sup>*</sup>:<br><input type="text" id="imie" name="imie"></label></td>					
+							<td><label>Hasło<sup>*</sup>:<br><input type="password" id="haslo" name="haslo"></label></td>
+						</tr><tr>			
+							<td><label>Nazwisko<sup>*</sup>:<br><input type="text" id="nazwisko" name="nazwisko"></label></td>
+							<td><label>Potwierdź hasło<sup>*</sup>:<br><input type="password" id="powt_haslo" name="powt_haslo"></label></td>			
+						</tr><tr>
+							<td><label>Wiek<sup>*</sup>:<br><input type="number" id="wiek" name="wiek" min="1"></label></td>
+							<td><label>Telefon:<br><input type="text" id="telefon" name="telefon"></label></td></tr>			
+					</table>	
+					<div class="przycisk_formularz"><input type="checkbox" id="regulamin" name="regulamin" /><label for='regulamin'>Akceptuję regulamin</label></div>					
+					<div class="przycisk_formularz"><input type="submit" id="przycisk_formularz" name="rejestracja" value="Zarejestruj" /></div>							
+				</form>
+			</div>
+			<span class="error"></span>
+			<span class="information"></span>				
+        </section>
+		<footer>
+			<ul>
+				<li><a href>Kino Samochodowe</a></li>
+				<li><a href>Newsletter</a></li>
+				<li><a href>Kontakt</a></li>
+			</ul>
+			<ul>
+				<li><a href>Regulacje</a></li>
+				<li><a href>Polityka prywatności</a></li>
+				<li><a href>Polityka cookies</a></li>
+			</ul>
+			<ul>
+				<li><a href>Facebook</a></li>
+				<li><a href>Instagram</a></li>
+				<li><a href>Twitter</a></li>
+			</ul><br>
+        </footer>
+    </body>
+</html>
